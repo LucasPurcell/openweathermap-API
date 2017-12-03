@@ -77,7 +77,20 @@ $(document).ready(function () {
 
 
 
-
+// Get weather in Gilbert, AZ
+    $("#getWeatherGA").click(function () {
+        $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/weather?appid=0d6f61476549a0d3895b89a0b31fa966&zip=85142,us",
+            success: function (theWeather) {
+                // var weatherString = JSON.stringify(theWeather); 
+                var kelvin = theWeather.main.temp;
+                var far = 1.8 * (kelvin - 273.15) + 32;
+                far = Math.round(far);
+                $("#resultsGA").text("Fahrenheit:   " + far + " Degrees");
+            },
+        });
+        $('#results').text('Getting Weather, one moment please...');
+    });
 
 
 
